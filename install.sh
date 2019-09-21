@@ -133,6 +133,7 @@ create_and_activate_virtual_env () {
     read -p 'Password: ' PASSWORD
     run_cmd "pip3 install --extra-index-url https://${USERNAME}:${PASSWORD}@pypi.netsquid.org netsquid" "Install NetSquid"
     run_cmd "pip3 install pysignals" "Install pysignals"
+    run_cmd "pip3 install cysignals" "Install cysignals"
 }
 
 parse_command_line_arguments $@
