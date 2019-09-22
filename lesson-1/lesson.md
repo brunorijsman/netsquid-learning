@@ -11,10 +11,10 @@ The system that we will simulate using disrete event simulation is a supermarket
  * Number of cash registers
  * Average customer interarrival time
  * Average customer service time
- * Maximum waiting time
+ * Maximum waiting time before giving up
 
 # Output parameters
 
  * Average waiting time (including service at cash register, including customers that give up)
- * Average queue length when a customer arrives
+ * Average queue length when a customer arrives (not including the itself)
  * Percentage of customers that give up
