@@ -19,9 +19,48 @@ of entangled qubits:
 A brief introduction to qubit state representation and manipulation in NetSquid is provided at
 https://docs.netsquid.org/latest-release/overview.qubits.html (login required).
 
-# Ket state formalism example
+# Ket state formalism example: teleportation
 
-TODO
+The ket state formalism is used to represent the pure state of a qubit or a group of qubits.
+
+As an example of how to use ket states, we will implement a simulation of teleportation: we are
+going to teleport the state of a source qubit **qs** to a destination qubit **qd**.
+
+We first create a Bell pair of qubits **qd** and **qh** in state |&#x3a6;+>.
+Qubit **qd** is the destination qubit to which the state of the source qubit **qs** will be
+teleported.
+Qubit **qh** is a helper qubit.
+
+Normally (e.g. in a quantum network), after the creation of qubits **qd** and **qh**, they would be
+physically distributed: **qd** would be sent to the destination location, and qubit **qh** would be
+sent to the source location (where **qs** resides).
+This would happen a-priori before the teleportation takes place.
+
+However, in this example we skip this step and do the teleportation locally in a single location.
+In other words, the source qubit **qs** and the destination qubit **qd** are at the same location,
+and we are only interested in transferring the state from one qubit **qs** to another qubit **qd**.
+
+We then create the source qubit **qs** and initialize it to some state that is known to us. 
+The initialization state is randomly selected from a set of candidate states, namely |0>, |1>, |+>,
+|->, |i>, or |-i>.
+
+Teleportation doesn't actually require that the source bit **qs** is in some known state.
+Teleportation can teleport a source qubit **qs** in any unknown state.
+
+But for the purpose of this example, we set the state of the source qubit **qs** to a known state.
+This allows us the compare the state of the destination qubit **qd** after teleportation with the
+original state of the source qubit **qs** and verify that they are the same (i.e. that the
+teleportation worked correctly).
+
+Of course, in real life, we cannot determine the state of the destination qubit **qd**.
+In real life, we can only _measure_ **qd** in some basis which does not (in general) determine it's
+full state.
+But not to worry, we are doing a simulation here, and we can look "under the hood" of the simulation
+and determine the full state of **qd**.
+
+The steps for actually performing the teleportation are as follows:
+
+ * @@@ CONTINUE FROM HERE @@@
 
 # Density matrix state formalism examle
 
