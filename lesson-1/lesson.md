@@ -1,20 +1,41 @@
 # Discrete Events
 
-NetSquid is first and foremost a discrete event simulator. In this lesson we will learn how to do discrete event simulations in NetSquid.
+NetSquid is first and foremost a discrete event simulator. In this lesson we will learn how to do
+discrete event simulations in NetSquid.
 
-# The supermarket
+A brief introduction to discrete event simulation in NetSquid is provided at
+https://docs.netsquid.org/latest-release/overview.pydynaa.html (login required).
 
-The system that we will simulate using disrete event simulation is a supermarket. There is some number of cash registers. The customer interarrival time is modeled using an exponential distribution. The customer always chooses the shortest queue. The service time at the cash registers is also modeled using an exponential distribution. If a customer has to wait longer than some maximum amount of time they give up and leave the queue.
+# Example: a supermarket
 
-# Input parameters
+## Description
 
- * Number of cash registers
- * Average customer interarrival time
- * Average customer service time
- * Maximum waiting time before giving up
+The system that we will simulate using disrete event simulation is a supermarket. 
 
-# Output parameters
+There is some number of cash registers NR_CASH_REGISTERS.
+
+The customer interarrival time is modeled using an exponential distribution with average
+AVG_CUSTOMER_INTERARRIVAL_TIME seconds.
+
+When the customer arrives, he always chooses cash register with the shortest queue, and then never
+changes queue after that.
+
+The service time at the cash registers is also modeled using an exponential distribution, with
+average AVG_CASH_REGISTER_SERVICE_TIME seconds.
+
+If a customer has to wait longer than MAX_CUSTOMER_WAITING_TIME seconds, he gives up and leave the
+queue.
+
+## Input parameters
+
+ * Number of cash registers NR_CASH_REGISTERS
+ * Average customer interarrival time AVG_CUSTOMER_INTERARRIVAL_TIME
+ * Average customer service time AVG_CASH_REGISTER_SERVICE_TIME
+ * Maximum waiting time before giving up MAX_CUSTOMER_WAITING_TIME
+
+## Output parameters
 
  * Average waiting time (including service at cash register, including customers that give up)
+ * Average queueing time (excluding service at cash register, including customers that give up)
  * Average queue length when a customer arrives (not including the itself)
- * Percentage of customers that give up
+ * Customers that gave up as a percentage of the customers that arrived
