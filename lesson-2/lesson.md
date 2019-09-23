@@ -60,7 +60,34 @@ and determine the full state of **qd**.
 
 The steps for actually performing the teleportation are as follows:
 
- * @@@ CONTINUE FROM HERE @@@
+ * Perform a Bell State Measurement (BSM) on qubits **qs** and **qh** to produce two classical bits.
+   The exact steps are as follows:
+
+   * CNOT(**qs**, **qh**)
+
+   * H(**qs**)
+
+   * **b1** = MEASURE(**qs**)
+
+   * **b2** = MEASURE(**qh**)
+
+ * At this point, normally the two classical bits **b1** and **b2** would be transmitted from one
+   location to another location, but since we are doing everyting in one location, this step is
+    skipped.
+
+ * Apply local corrections to **qd**:
+
+   * If **b1** **b2** = 00 then do nothing (no correction is needed)
+
+   * If **b1** **b2** = 01 then X(**bd**)
+
+   * If **b1** **b2** = 10 then Z(**bd**)
+
+   * If **b1** **b2** = 11 then Y(**bd**)
+
+ * At this point the destination qubit **qd** has the state that source qubit **qs** used to have
+   before the teleportation. Also the state of source qubit **qs** has collapsed to |0> or |1>,
+   which means we did not violate the no-cloning theorem.
 
 # Density matrix state formalism examle
 
