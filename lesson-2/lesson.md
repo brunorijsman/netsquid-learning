@@ -41,22 +41,27 @@ In other words, the source qubit **qs** and the destination qubit **qd** are at 
 and we are only interested in transferring the state from one qubit **qs** to another qubit **qd**.
 
 We then create the source qubit **qs** and initialize it to some state that is known to us. 
-The initialization state is randomly selected from a set of candidate states, namely |0>, |1>, |+>,
-|->, |i>, or |-i>.
+The initialization state is randomly selected from a set small of candidate states, namely |0>, |1>,
+|+>, |->, |i>, or |-i>.
+After we create the source qubit, we remember the state that was chosen for it.
 
 Teleportation doesn't actually require that the source bit **qs** is in some known state.
 Teleportation can teleport a source qubit **qs** in any unknown state.
 
 But for the purpose of this example, we set the state of the source qubit **qs** to a known state.
 This allows us the compare the state of the destination qubit **qd** after teleportation with the
-original state of the source qubit **qs** and verify that they are the same (i.e. that the
+chosen state for the source qubit **qs** and verify that they are the same (i.e. that the
 teleportation worked correctly).
 
-Of course, in real life, we cannot determine the state of the destination qubit **qd**.
+Of course, in real life, we cannot determine the state of the destination qubit **qd** after the 
+teleportation.
 In real life, we can only _measure_ **qd** in some basis which does not (in general) determine it's
 full state.
 But not to worry, we are doing a simulation here, and we can look "under the hood" of the simulation
 and determine the full state of **qd**.
+More specifically, we use the fidelity as a measure of how close the destination qubit **qd** is to
+the chosen and hence expected state. The fidelity should be exactly 1.0 (allowing for some rounding
+errors in the floating point calculations)
 
 The steps for actually performing the teleportation are as follows:
 
