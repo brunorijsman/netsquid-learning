@@ -2,10 +2,25 @@
 
 NetSquid simulates physical quantum information processing systems: quantum computers and quantum
 networks.
+So, it is not surprising that NetSquid contains various classes to represent and manipulate qubits,
+including:
 
-NetSquid contains various generalized classes to represent and manipulate qubits. These generalized
-classes are used as building blocks to implement simulations of specific quantum technologies, such
-as nitrogen vacancy centers (NV), atomic ensembles, ion traps, etc.
+ * Class 
+   [*Qubit*](https://docs.netsquid.org/latest-release/netsquid.qubits.html#netsquid.qubits.qubit.Qubit)
+   represents an idealized qubit.
+
+ * Class
+   [*Operator*](https://docs.netsquid.org/latest-release/netsquid.qubits.html#netsquid.qubits.operators.Operator)
+   represents a quantum operator (e.g. a CNOT gate).
+
+ * Class
+   [*QState*](https://docs.netsquid.org/latest-release/netsquid.qubits.html#netsquid.qubits.qstate.QState)
+   represents the state of a qubit. 
+   In real life we cannot access the state of a qubit, we can only measure a qubit (which collapses
+   the state).
+   But in simulations we can "peek under the hood" and look at the state, which is very useful for
+   debugging our algorithms.
+   The internal representation of the state depends on the formalism.
 
 NetSquid supports three quantum formalisms to internally represent the state of a single or a group
 of entangled qubits:
@@ -15,6 +30,16 @@ of entangled qubits:
  * Density Matrix (DM) state formalism
  
  * Stabilizer state formalism
+ 
+All of these classes are idealized representations, as opposed to accurate simulations of real
+quantum devices.
+For example, all operations (e.g. a CNOT gate) on a qubit take zero time, always succeed, and have
+perfect results (i.e. no noise).
+
+These idealized representations are used as building blocks for simulating actual quantum devices.
+The density matrix formalism is used to model the fact that real devices are imperfect (have noise). 
+And discrete event simulation (discussed earlier in lesson 1) is used to model the fact that in the
+real world operations are not instantaneous but take some finite amount of time.
 
 A brief introduction to qubit state representation and manipulation in NetSquid is provided at
 https://docs.netsquid.org/latest-release/overview.qubits.html (login required).
@@ -93,6 +118,14 @@ The steps for actually performing the teleportation are as follows:
  * At this point the destination qubit **qd** has the state that source qubit **qs** used to have
    before the teleportation. Also the state of source qubit **qs** has collapsed to |0> or |1>,
    which means we did not violate the no-cloning theorem.
+
+Since our implementation of teleportation (file teleportation.py) uses the ket state formalism,
+it is (as discussed before) an idealized simulation. 
+It does not take into account that in real implementations operations would take some finite amount
+of time, that qubits would decohere during those time intervals, that operations are imperfect due
+to noise etc.
+Hence, in this implementation the teleportation always succeeds and the fidelity of the destination
+qubit is always 1.00.
 
 # Density matrix state formalism examle
 
